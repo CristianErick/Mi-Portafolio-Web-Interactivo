@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #e0e0e0;
+            --text-color: #333;
+            --display-bg: #c7c7c7;
+            --btn-bg: #e0e0e0;
+            --btn-shadow-1: #bebebe;
+            --btn-shadow-2: #c18484;
+            --operator-color: #ff9500;
+            --function-color: #6c757d;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--background);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+
+        .calculator {
+            width: 320px;
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--background);
+            box-shadow: 20px 20px 60px #bebebe,
+                        -20px -20px 60px #ffffff;
+        }
+
+        .display {
+            margin-bottom: 20px;
+        }
+
+        .display input {
+            width: 100%;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            border: none;
+            background: var(--display-bg);
+            border-radius: 15px;
+            text-align: right;
+            font-size: 2.5em;
+            color: var(--text-color);
+            box-shadow: inset 8px 8px 16px #a8a8a8,
+                        inset -8px -8px 16px #e6e6e6;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            height: 65px;
+            border: none;
+            border-radius: 15px;
+            background: var(--btn-bg);
+            font-size: 1.5em;
+            font-weight: 400;
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 5px 5px 10px var(--btn-shadow-1),
+                        -5px -5px 10px var(--btn-shadow-2);
+            transition: all 0.1s ease-in-out;
+        }
+
+        .btn:active {
+            box-shadow: inset 5px 5px 10px var(--btn-shadow-1),
+                        inset -5px -5px 10px var(--btn-shadow-2);
+            font-size: 1.4em;
+        }
+
+        .btn.function {
+            color: var(--function-color);
+        }
+
+        .btn.operator {
+            color: var(--operator-color);
+        }
+
+        .btn.equal {
+            background: var(--operator-color);
+            color: white;
+        }
+
+        .btn.zero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="result" placeholder="0" disabled>
+        </div>
+        <div class="buttons">
+            <button class="btn function" onclick="clearScreen()">AC</button>
+            <button class="btn function" onclick="deleteChar()">DEL</button>
+            <button class="btn operator" onclick="display('%')">%</button>
+            <button class="btn operator" onclick="display('/')">÷</button>
+            <button class="btn" onclick="display('7')">7</button>
+            <button class="btn" onclick="display('8')">8</button>
+            <button class="btn" onclick="display('9')">9</button>
+            <button class="btn operator" onclick="display('*')">×</button>
+            <button class="btn" onclick="display('4')">4</button>
+            <button class="btn" onclick="display('5')">5</button>
+            <button class="btn" onclick="display('6')">6</button>
+            <button class="btn operator" onclick="display('-')">-</button>
+            <button class="btn" onclick="display('1')">1</button>
+            <button class="btn" onclick="display('2')">2</button>
+            <button class="btn" onclick="display('3')">3</button>
+            <button class="btn operator" onclick="display('+')">+</button>
+            <button class="btn zero" onclick="display('0')">0</button>
+            <button class="btn" onclick="display('.')">.</button>
+            <button class="btn equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+
+        function display(val) {
+            result.value += val;
+        }
+
+        function calculate() {
+            try {
+                let expression = result.value.replace(/×/g, '*').replace(/÷/g, '/');
+                result.value = eval(expression);
+            } catch (e) {
+                result.value = 'Error';
+                setTimeout(() => result.value = '', 1500);
+            }
+        }
+
+        function clearScreen() {
+            result.value = '';
+        }
+
+        function deleteChar() {
+            result.value = result.value.slice(0, -1);
+        }
+    </script>
+</body>
+</html>

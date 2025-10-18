@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computadora 3D</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px;
+        }
+
+        .escena {
+            width: 300px;
+            height: 250px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-style: preserve-3d;
+            transition: transform 0.1s linear;
+        }
+
+        .cubo {
+            position: absolute;
+            transform-style: preserve-3d;
+        }
+
+        .cara {
+            position: absolute;
+            background-color: rgba(50, 50, 50, 0.9);
+            border: 1px solid #777;
+            box-sizing: border-box;
+        }
+
+        .monitor {
+            width: 250px;
+            height: 150px;
+            top: 10px;
+            left: 25px;
+        }
+
+        .monitor .frente  { transform: translateZ(10px); width: 250px; height: 150px; background-color: #87CEEB; }
+        .monitor .atras   { transform: rotateY(180deg) translateZ(10px); width: 250px; height: 150px; background-color: #333;}
+        .monitor .derecha { transform: rotateY(90deg) translateZ(240px); width: 20px; height: 150px; background-color: #444;}
+        .monitor .izquierda{ transform: rotateY(-90deg) translateZ(10px); width: 20px; height: 150px; background-color: #444;}
+        .monitor .arriba  { transform: rotateX(90deg) translateZ(10px); width: 250px; height: 20px; background-color: #444;}
+        .monitor .abajo   { transform: rotateX(-90deg) translateZ(140px); width: 250px; height: 20px; background-color: #444;}
+
+        .soporte {
+            width: 20px;
+            height: 40px;
+            top: 160px;
+            left: 140px;
+        }
+
+        .soporte .frente  { transform: translateZ(5px); width: 20px; height: 40px; background-color: #555; }
+        .soporte .atras   { transform: rotateY(180deg) translateZ(5px); width: 20px; height: 40px; background-color: #555;}
+        .soporte .derecha { transform: rotateY(90deg) translateZ(15px); width: 10px; height: 40px; background-color: #666;}
+        .soporte .izquierda{ transform: rotateY(-90deg) translateZ(5px); width: 10px; height: 40px; background-color: #666;}
+
+
+        .base {
+            width: 100px;
+            height: 10px;
+            top: 200px;
+            left: 100px;
+        }
+
+        .base .frente  { transform: translateZ(25px); width: 100px; height: 10px; background-color: #444;}
+        .base .atras   { transform: rotateY(180deg) translateZ(25px); width: 100px; height: 10px; background-color: #444;}
+        .base .derecha { transform: rotateY(90deg) translateZ(75px); width: 50px; height: 10px; background-color: #555;}
+        .base .izquierda{ transform: rotateY(-90deg) translateZ(25px); width: 50px; height: 10px; background-color: #555;}
+        .base .arriba  { transform: rotateX(90deg) translateZ(5px); width: 100px; height: 50px; background-color: #666;}
+
+    </style>
+</head>
+<body>
+
+    <div class="escena">
+        <div class="cubo monitor">
+            <div class="cara frente"></div>
+            <div class="cara atras"></div>
+            <div class="cara derecha"></div>
+            <div class="cara izquierda"></div>
+            <div class="cara arriba"></div>
+            <div class="cara abajo"></div>
+        </div>
+        <div class="cubo soporte">
+            <div class="cara frente"></div>
+            <div class="cara atras"></div>
+            <div class="cara derecha"></div>
+            <div class="cara izquierda"></div>
+        </div>
+        <div class="cubo base">
+            <div class="cara frente"></div>
+            <div class="cara atras"></div>
+            <div class="cara derecha"></div>
+            <div class="cara izquierda"></div>
+            <div class="cara arriba"></div>
+        </div>
+    </div>
+
+    <script>
+        const escena = document.querySelector(".escena");
+        let posX = 0;
+        let posY = 0;
+        let rotX = -15;
+        let rotY = 15;
+
+        function actualizarTransformacion() {
+            escena.style.transform = `translate(-50%, -50%) translate(${posX}px, ${posY}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const pasoMovimiento = 20;
+            const pasoRotacion = 15;
+
+            switch (event.key) {
+                case "w":
+                    posY -= pasoMovimiento;
+                    break;
+                case "s":
+                    posY += pasoMovimiento;
+                    break;
+                case "a":
+                    posX -= pasoMovimiento;
+                    break;
+                case "d":
+                    posX += pasoMovimiento;
+                    break;
+                
+                case "ArrowUp":
+                    rotX += pasoRotacion;
+                    break;
+                case "ArrowDown":
+                    rotX -= pasoRotacion;
+                    break;
+                case "ArrowLeft":
+                    rotY -= pasoRotacion;
+                    break;
+                case "ArrowRight":
+                    rotY += pasoRotacion;
+                    break;
+                default:
+                    return;
+            }
+            
+            event.preventDefault();
+            actualizarTransformacion();
+        });
+
+        actualizarTransformacion();
+    </script>
+</body>
+</html>

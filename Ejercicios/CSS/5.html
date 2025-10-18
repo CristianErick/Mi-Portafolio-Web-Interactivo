@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paisaje Andino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        h1 {
+            /* display: ; se eliminó por ser inválido */
+            border: 1px solid rgb(0, 200, 30); /* Verde ligeramente más suave */
+            text-align: center;
+            text-decoration: underline;
+            padding: 5px;
+        }
+        img {
+            padding: 10px;
+            border: 1px solid #D32F2F; /* Rojo más oscuro */
+            float: left;
+            margin: 0 10px 10px 0;
+            max-width: 250px;
+        }
+        .caja, .caja3 {
+            box-sizing: border-box; /* Mejora clave para el layout */
+            padding: 10px;
+        }
+        .caja {
+            border: 2px solid skyblue;
+            width: 30%;
+            float: left;
+            margin-right: 1.5%;
+        }
+        .col2 {
+            box-shadow: 4px 4px 5px #E57373; /* Sombra roja más suave */
+        }
+        .caja3 {
+            border: 2px solid rgb(128, 128, 128);
+            width: 30%;
+            float: right;
+        }
+        .cara {
+            background: #F9E79F; /* Amarillo más suave */
+            border-radius: 100%;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            clear: both; /* Arreglo clave para el layout */
+            margin: 30px auto; /* Centra la cara */
+        }
+        .cara .ojo1 {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 100%;
+            position: absolute;
+            top: 55px;
+            left: 50px;
+        }
+        .cara .ojo2 {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 100%;
+            position: absolute;
+            top: 55px;
+            left: 140px;
+        }
+        .cara .voca {
+            width: 100px;
+            height: 30px; /* Un poco más alta para curvar */
+            background-color: transparent;
+            border-bottom: 5px solid black; /* Borde en lugar de fondo */
+            border-radius: 50%; /* Curva la boca */
+            position: absolute;
+            top: 115px;
+            left: 45px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Paisaje</h1>
+    
+    <img src="images (1).jpg" alt="Imagen de un paisaje">
+    
+    <p>Hace mucho tiempo, cuando los cóndores aún conversaban con las estrellas y los ríos llevaban mensajes de los dioses, un joven llamado Amaru vivía en lo alto de las montañas del Cusco. Amaru era curioso, siempre preguntaba por qué las nubes abrazaban las cumbres y por qué el sol parecía detenerse sobre una ciudad escondida entre los picos verdes.</p>
+    <p>Una noche, mientras soñaba, el Apus —los espíritus de las montañas— le hablaron:
+    —“Debes proteger el lugar donde el sol y la luna se encuentran. Allí nacerá la sabiduría de tu pueblo.”</p>
+    <p>Guiado por los cóndores, Amaru llegó hasta una ciudad de piedra que parecía crecer del mismo corazón de la montaña. Allí encontró templos que se alineaban con el solsticio, terrazas que alimentaban la tierra y una calma que parecía eterna. Era Machu Picchu, la ciudad sagrada.</p>
+    
+    <div class="caja col1">
+        Pero no todo estaba en paz. Una sombra oscura, hecha de viento frío y desconfianza, quería borrar la memoria de aquel sitio. Amaru, recordando las palabras de los Apus, se enfrentó a la sombra.
+    </div>
+    <div class="caja col2">
+        Con la ayuda del río Vilcanota y la fuerza de los cóndores, logró sellarla en las profundidades de la montaña. Amaru protegió el legado sagrado.
+    </div>
+    <div class="caja3">
+        Su historia se convirtió en leyenda, susurrada por el viento entre las piedras de la ciudadela, un recordatorio eterno de valentía y conexión con la tierra.
+    </div>
+    
+    <div class="cara">
+        <div class="ojo1"></div>
+        <div class="ojo2"></div>
+        <div class="voca"></div>
+    </div>
+</body>
+</html>
